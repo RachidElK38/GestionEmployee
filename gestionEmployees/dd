@@ -1,0 +1,22 @@
+    <?php 
+                                            $sql = "SELECT * FROM employee";
+                                            $result = mysqli_query($con,$sql);
+                                        if($result){
+                                                while($emps = mysqli_fetch_array($result)){
+                                     ?>
+                                     <tr>
+                                     <td><?php echo $emps['matricule'];?></td>            
+                                     <td><?php echo $emps['nom'];?> </td>
+                                     <td><?php echo $emps['prenom']?></td>
+                                     <td><?php echo $emps['dateNaiss']?></td>      
+                                              
+                                     <td><?php echo  $emps['departement']?></td>
+                                     <td><?php echo $emps['salaire']?></td>
+                                     <td><?php echo $emps['fonction']?></td>
+                                     <td><td>
+                                     <td>
+                                    <a href="" class="btn btn-warning btn-xs">Editer</a>
+                                    <a href="" class="btn btn-warning btn-xs">Supprimer</a>
+                                </td>
+                                                </tr>            
+                                        <?php }}?>
