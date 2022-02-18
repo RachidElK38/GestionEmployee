@@ -25,8 +25,8 @@ $emp = mysqli_fetch_assoc($res);
         where matricule='$matr'";
         $test  = mysqli_query($con,$sql);
         if($test){
-            echo"updateeeeee";
-            // header('location:index.php');
+            
+            header('location:index.php');
 
         }      
         else{

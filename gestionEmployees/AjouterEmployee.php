@@ -7,12 +7,19 @@
         $Dep= $_POST["departement"];
         $Salaire= $_POST["Salaire"];
         $Fonction= $_POST["fonction"];
+
+        $file = $_FILES['image'];
+        $filename = $file["name"];
+        $filepath = $file["tmp_name"];
+        $folder = 'img/'.$filename;
+
+       
         
-        $sql=   "INSERT INTO employee (matricule,nom,prenom,dateNaiss,departement,salaire,fonction)
-         VALUES ('$Matricule','$Nom','$Prenom','$DateNaiss','$Dep','$Salaire','$Fonction')";
+        $sql=   "INSERT INTO employee 
+         VALUES ('$Matricule','$Nom','$Prenom','$DateNaiss','$Dep','$Salaire','$Fonction','$filename')";
         $test  = mysqli_query($con,$sql);
         if($test){
-            
+            move_uploaded_file($filepath,$folder);
             header('location:index.php');
 
         }      
@@ -34,7 +41,7 @@
                     <div class="card-header"><h4>Nouveau employée</h4></div>
                         <div class="card-body">
                            
-                            <form action="" method="POST">
+                            <form enctype="multipart/form-data" method="POST">
                                         <div class="form-group">
                                             <label for="matricule">Matricule</label>
                                                 <input type="text" class="form-control" name="matricule"> 
@@ -72,7 +79,10 @@
                                             
                                     <div class="form-group">
                                                 <label for="photo">Photo</label>
-                                                <input type="file" name="photo" class="form-control">
+                                                <input type="file" name="image" class="form-control"
+                                                
+                                                
+                                                accept="image/png,image/jpg, image/jpeg">
                                     </div>      
                                           
                                     <div class="form-group">

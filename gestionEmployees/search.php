@@ -1,4 +1,6 @@
-
+<?php 
+$search = $_REQUEST['search'];
+?>
 
 <?php include("connect.php");?>
 <?php include("PageConstantes/header.php");?>
@@ -6,6 +8,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
+                        <input type="text" name="search">
                         <div class="card-body">
                             <table class="table">
                                 <thead>
@@ -23,10 +26,15 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sql = "Select  * from employee";
+                                    
+                                    $sql = "SELECT * FROM employee 
+                                    WHERE matricule LIKE %$search% or 
+                                    departement LIKE  %$search% 
+                                    or nom LIKE  %$search% ";
                                     $emps = mysqli_query($con,$sql);
                                     if($emps){
-                                        foreach($emps as $emp){
+                                        foreach($emps as $emp)
+                                        {
 
                                             echo'<tr>
                                                 <td>'.$emp['matricule'].'</td>
