@@ -27,7 +27,7 @@
 
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="#">Rechercher Employé</a>
+        <a class="nav-link text-white" href="search.php">Rechercher Employé</a>
       </li>
      
     </ul>

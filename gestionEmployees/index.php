@@ -23,7 +23,7 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sql = "Select  * from employee";
+                                    $sql = "Select * from employee";
                                     $emps = mysqli_query($con,$sql);
                                     if($emps){
                                         foreach($emps as $emp){
@@ -39,7 +39,7 @@
                                                 <td> <img src="'.$emp['photo'].'" width=200>  </td>
                                                 <td>
                                                 <a href="update.php?matricule='.$emp['matricule'].'" class="btn btn-warning ">Editer</a>
-                                                <a href="delete.php?matricule='.$emp['matricule'].'" class="btn btn-warning "  >Supprimer</a>
+                                                <a href="delete.php?matricule='.$emp['matricule'].'" class="btn btn-warning " >Supprimer</a>
                                             </td>
                                             </tr>  ';                                        
                                         }

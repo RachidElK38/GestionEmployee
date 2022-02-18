@@ -1,14 +1,30 @@
-<?php 
-$search = $_REQUEST['search'];
-?>
-
 <?php include("connect.php");?>
 <?php include("PageConstantes/header.php");?>
     <div class="container mt-5">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <input type="text" name="search">
+                        <?php 
+                                if(isset($_POST['search'])){
+                                    $ss = $_POST['search'];
+                                    $sql = "SELECT * FROM employee 
+                                    WHERE matricule LIKE '%$ss%' OR departement LIKE '%$ss%'";
+
+                                    
+                                }
+                                else{
+                                    $sql = "SELECT * FROM  employee";
+                                    $ss = "";
+                                }
+                                $emps = mysqli_query($con,$sql);
+                        ?>
+                        <form  method="POST">
+                            <div class="col-md-6">
+                                <input type="text" name="search" class="form-control"
+                                placeholder="Search" value=<?php echo $ss ;?>>
+                                <button class="btn">Search</button>
+                            </div>
+                        </form>
                         <div class="card-body">
                             <table class="table">
                                 <thead>
@@ -25,13 +41,9 @@ $search = $_REQUEST['search'];
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
+                                <?php
                                     
-                                    $sql = "SELECT * FROM employee 
-                                    WHERE matricule LIKE %$search% or 
-                                    departement LIKE  %$search% 
-                                    or nom LIKE  %$search% ";
-                                    $emps = mysqli_query($con,$sql);
+                                    
                                     if($emps){
                                         foreach($emps as $emp)
                                         {
